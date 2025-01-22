@@ -1,4 +1,4 @@
-package com.carrental.domain;
+package com.carrental.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,4 +26,9 @@ public class CarCategory {
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
+
+	public CarCategory(Car newCar, Category category) {
+		this.car = newCar;
+		this.category = category;
+	}
 }

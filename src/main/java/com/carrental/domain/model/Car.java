@@ -1,4 +1,4 @@
-package com.carrental.domain;
+package com.carrental.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +7,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,11 +33,35 @@ public class Car {
 	@Column(name = "rental_status", nullable = false, length = 20)
 	private RentalStatus rentalStatus;
 
-	@Builder
-	public Car(String manufacturer, String model, int productionYear, RentalStatus rentalStatus) {
+	public Car(CarCreate create) {
+		this(create.manufacturer(), create.model(), create.productionYear());
+	}
+
+	public Car(String manufacturer, String model, int productionYear) {
 		this.manufacturer = manufacturer;
 		this.model = model;
 		this.productionYear = productionYear;
-		this.rentalStatus = rentalStatus;
+		this.rentalStatus = RentalStatus.AVAILABLE;
+	}
+
+	/**
+	 * 렌탈 상태를 업데이트 합니다.
+	 *
+	 * @param status 변경할 렌탈 상태 (RentalStatus 열거형 값)
+	 * @throws IllegalArgumentException 전달된 상태가 null인 경우 예외가 발생합니다.
+	 */
+	public void updateRentalStatus(RentalStatus status) {
+		if (status == null) {
+			throw new IllegalArgumentException("렌탈 상태는 null일 수 없습니다.");
+		}
+		this.rentalStatus = status;
+	}
+
+	/**
+	 * 현재 렌탈 상태가 대여 가능한지 확인합니다.
+	 * @return 상태가 AVAILABL일 경우 true, 그 외에는 false를 반환합니다.
+	 */
+	public boolean isRentalable() {
+		return RentalStatus.AVAILABLE == this.rentalStatus;
 	}
 }
