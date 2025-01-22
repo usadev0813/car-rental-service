@@ -1,5 +1,5 @@
 ### 자동차 생성 API 호출
-POST {{base}}/car
+POST {{base}}/cars
 Content-Type: application/json
 Accept: application/json
 
@@ -14,3 +14,6 @@ Accept: application/json
     ]
   }
 }
+
+### 자동차 렌탈 가능여부 API 호출
+GET {{base}}/cars/1

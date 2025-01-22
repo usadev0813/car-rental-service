@@ -2,6 +2,8 @@ package com.carrental.domain;
 
 import java.util.List;
 
+import com.carrental.presentation.response.CarResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.carrental.domain.model.Car;
@@ -21,6 +23,7 @@ public class CarService {
 	private final CarCategoryRepository carCategoryRepository;
 	private final CategoryRepository categoryRepository;
 
+	@Transactional
 	public Car create(CarCreate create) {
 		var newCar = new Car(create);
 
@@ -37,4 +40,9 @@ public class CarService {
 		return newCar;
 	}
 
+	public boolean isCarAvailable(Long carId) {
+		Car car = carRepository.findById(carId)
+				.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 자동차 입니다: " + carId));
+		return car.isRentalable();
+	}
 }

@@ -1,11 +1,7 @@
 package com.carrental.presentation;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.carrental.domain.CarService;
 import com.carrental.domain.model.Car;
@@ -22,7 +18,7 @@ public class CarController {
 	private final CarService carService;
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/car")
+	@PostMapping("/cars")
 	public CarResponse create(@RequestBody CreateCarRequest request) {
 		CarCreate carCreate = new CarCreate(request.car().manufacturer(),
 			request.car().model(),
@@ -31,5 +27,10 @@ public class CarController {
 
 		Car car = carService.create(carCreate);
 		return CarResponse.from(car);
+	}
+
+	@GetMapping("/cars/{carId}")
+	public boolean checkAvailability(@PathVariable Long carId) {
+        return carService.isCarAvailable(carId);
 	}
 }

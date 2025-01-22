@@ -7,6 +7,8 @@ import com.carrental.domain.model.CarRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class CarRepositoryAdapter implements CarRepository {
@@ -15,5 +17,10 @@ public class CarRepositoryAdapter implements CarRepository {
 	@Override
 	public Car save(Car car) {
 		return carJpaRepository.save(car);
+	}
+
+	@Override
+	public Optional<Car> findById(Long carId) {
+		return carJpaRepository.findById(carId);
 	}
 }
