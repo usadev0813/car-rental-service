@@ -9,8 +9,8 @@ Accept: application/json
     "model": "Tucson",
     "productionYear": 2023,
     "categories": [
-      "미니SUV",
-      "대형RV"
+      1,
+      2
     ]
   }
 }

@@ -25,9 +25,9 @@ public class CarService {
 		var newCar = new Car(create);
 
 		List<CarCategory> list = create.categories().stream()
-			.map(categoryName -> {
-				Category category = categoryRepository.findByName(categoryName)
-					.orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다: " + categoryName));
+			.map(categoryId -> {
+				Category category = categoryRepository.findById(categoryId)
+					.orElseThrow(() -> new IllegalArgumentException("카테고리가 존재하지 않습니다: " + categoryId));
 				return new CarCategory(newCar, category);
 			}).toList();
 

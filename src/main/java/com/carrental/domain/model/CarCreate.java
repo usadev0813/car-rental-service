@@ -2,7 +2,7 @@ package com.carrental.domain.model;
 
 import java.util.List;
 
-public record CarCreate(String manufacturer, String model, int productionYear, List<String> categories) {
+public record CarCreate(String manufacturer, String model, int productionYear, List<Long> categories) {
 
 	public CarCreate {
 		if (categories == null || categories.isEmpty()) {

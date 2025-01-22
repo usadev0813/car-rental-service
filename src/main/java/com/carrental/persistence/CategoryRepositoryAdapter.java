@@ -15,7 +15,7 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
 	private final CategoryJpaRepository categoryJpaRepository;
 
 	@Override
-	public Optional<Category> findByName(String name) {
-		return categoryJpaRepository.findByName(name);
+	public Optional<Category> findById(Long id) {
+		return categoryJpaRepository.findById(id);
 	}
 }
