@@ -1,0 +1,2 @@
+### 자동차 카테고리 별 조회
+GET {{base}}/categories/4/cars

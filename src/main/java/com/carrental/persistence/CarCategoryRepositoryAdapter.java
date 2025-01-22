@@ -18,4 +18,9 @@ public class CarCategoryRepositoryAdapter implements CarCategoryRepository {
 	public List<CarCategory> saveAll(List<CarCategory> carCategories) {
 		return carCategoryJpaRepository.saveAll(carCategories);
 	}
+
+	@Override
+	public List<CarCategory> findByCategoryId(Long categoryId) {
+		return carCategoryJpaRepository.findByCategoryId(categoryId);
+	}
 }
