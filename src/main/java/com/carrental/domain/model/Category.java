@@ -1,10 +1,15 @@
 package com.carrental.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +25,7 @@ public class Category {
 
 	@Column(name = "name", nullable = false, unique = true, length = 50)
 	private String name;
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CarCategory> carCategories = new ArrayList<>();
 }

@@ -1,5 +1,9 @@
 package com.carrental.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,6 +37,9 @@ public class Car {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "rental_status", nullable = false, length = 20)
 	private RentalStatus rentalStatus;
+
+	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CarCategory> carCategories = new ArrayList<>();
 
 	public Car(CarCreate create) {
 		this(create.manufacturer(), create.model(), create.productionYear());
@@ -63,5 +71,13 @@ public class Car {
 	 */
 	public boolean isRentalable() {
 		return RentalStatus.AVAILABLE == this.rentalStatus;
+	}
+
+	public void addCategory(Category category) {
+		this.carCategories.add(new CarCategory(this, category));
+	}
+
+	public void removeCategory(Category category) {
+		this.carCategories.removeIf(carCategory -> carCategory.getCategory().equals(category));
 	}
 }
