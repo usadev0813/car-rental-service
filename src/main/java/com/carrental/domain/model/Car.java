@@ -76,8 +76,4 @@ public class Car {
 	public void addCategory(Category category) {
 		this.carCategories.add(new CarCategory(this, category));
 	}
-
-	public void removeCategory(Category category) {
-		this.carCategories.removeIf(carCategory -> carCategory.getCategory().equals(category));
-	}
 }
