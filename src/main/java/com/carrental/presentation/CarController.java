@@ -47,23 +47,23 @@ public class CarController {
 	}
 
 	@GetMapping("/cars/{carId}/availability")
-	public boolean checkAvailability(@PathVariable Long carId) {
+	public boolean checkAvailability(@PathVariable(name = "carId") Long carId) {
 		return carService.isCarAvailable(carId);
 	}
 
 	@GetMapping("/cars/search")
 	public List<CarResponse> searchCars(
-		@RequestParam(required = false) String manufacturer,
-		@RequestParam(required = false) String model,
-		@RequestParam(required = false) Integer productionYear
+		@RequestParam(name = "manufacturer", required = false) String manufacturer,
+		@RequestParam(name = "model", required = false) String model,
+		@RequestParam(name = "productionYear", required = false) Integer productionYear
 	) {
 		return carService.searchCars(manufacturer, model, productionYear);
 	}
 
 	@PatchMapping("/cars/{carId}/rental-status")
 	public void updateRentalStatus(
-		@PathVariable Long carId,
-		@RequestParam RentalStatus status
+		@PathVariable(name = "carId") Long carId,
+		@RequestParam(name = "status") RentalStatus status
 	) {
 		carService.updateRentalStatus(carId, status);
 	}

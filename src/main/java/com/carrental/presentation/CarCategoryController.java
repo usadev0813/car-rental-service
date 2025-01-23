@@ -27,7 +27,7 @@ public class CarCategoryController {
 	private final CategoryService categoryService;
 
 	@GetMapping("/categories/{categoryId}/cars")
-	public List<CarWithCategoryResponse> getCarsByCategoryId(@PathVariable Long categoryId) {
+	public List<CarWithCategoryResponse> getCarsByCategoryId(@PathVariable(name = "categoryId") Long categoryId) {
 		return carCategoryService.getCarsByCategoryId(categoryId).stream()
 			.map(carCategoryDetails -> CarWithCategoryResponse.from(carCategoryDetails.car(),
 				carCategoryDetails.categories()))
@@ -35,7 +35,7 @@ public class CarCategoryController {
 	}
 
 	@PatchMapping("/cars/{carId}/categories")
-	public void updateCarCategories(@PathVariable Long carId, @RequestBody UpdateCarCategoriesRequest request) {
+	public void updateCarCategories(@PathVariable(name = "carId") Long carId, @RequestBody UpdateCarCategoriesRequest request) {
 		var car = carService.getCar(carId);
 		var categories = categoryService.getCategoriesByIds(request.categoryIds());
 		carCategoryService.updateCarCategories(car, categories);
