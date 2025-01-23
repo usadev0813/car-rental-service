@@ -13,6 +13,9 @@ Accept: application/json
   ]
 }
 
+### 자동차 렌탈 상태 업데이트
+PATCH {{base}}/cars/1/rental-status?status=UNAVAILABLE
+
 ### 자동차 대여 가능 여부 조회
 GET {{base}}/cars/1/availability
 
