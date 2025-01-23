@@ -4,16 +4,29 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "car": {
-    "manufacturer": "Hyundai",
-    "model": "Tucson",
-    "productionYear": 2023,
-    "categories": [
-      1,
-      2
-    ]
-  }
+  "manufacturer": "Hyundai",
+  "model": "Tucson",
+  "productionYear": 2023,
+  "categories": [
+    1,
+    2
+  ]
 }
 
 ### 자동차 대여 가능 여부 조회
-GET {{base}}/cars/1
+GET {{base}}/cars/1/availability
+
+### 자동차 제조사로 검색
+GET {{base}}/cars/search?manufacturer=Hyundai
+
+### 자동차 모델명으로 검색
+GET {{base}}/cars/search?model=Tucson
+
+### 자동차 생산년도로 검색
+GET {{base}}/cars/search?productionYear=2024
+
+### 제조사와 모델명으로 검색
+GET {{base}}/cars/search?manufacturer=Hyundai&model=Tucson
+
+### 모든 자동차 조회
+GET {{base}}/cars/search

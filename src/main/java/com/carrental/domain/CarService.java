@@ -1,5 +1,7 @@
 package com.carrental.domain;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.carrental.domain.model.Car;
@@ -7,6 +9,7 @@ import com.carrental.domain.model.CarCreate;
 import com.carrental.domain.model.CarRepository;
 import com.carrental.domain.model.Category;
 import com.carrental.domain.model.CategoryRepository;
+import com.carrental.presentation.response.CarResponse;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +40,12 @@ public class CarService {
 		Car car = carRepository.findById(carId)
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 자동차 입니다: " + carId));
 		return car.isRentalable();
+	}
+
+	public List<CarResponse> searchCars(String manufacturer, String model, Integer productionYear) {
+		List<Car> cars = carRepository.findByCriteria(manufacturer, model, productionYear);
+		return cars.stream()
+			.map(CarResponse::from)
+			.toList();
 	}
 }
