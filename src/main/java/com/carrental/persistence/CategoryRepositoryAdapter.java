@@ -1,5 +1,6 @@
 package com.carrental.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,10 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
 	@Override
 	public Optional<Category> findById(Long id) {
 		return categoryJpaRepository.findById(id);
+	}
+
+	@Override
+	public List<Category> findAllById(List<Long> categoryIds) {
+		return categoryJpaRepository.findAllById(categoryIds);
 	}
 }

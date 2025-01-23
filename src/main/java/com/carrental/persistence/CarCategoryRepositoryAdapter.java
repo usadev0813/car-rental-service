@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.carrental.domain.model.Car;
 import com.carrental.domain.model.CarCategory;
 import com.carrental.domain.model.CarCategoryRepository;
 
@@ -22,5 +23,10 @@ public class CarCategoryRepositoryAdapter implements CarCategoryRepository {
 	@Override
 	public List<CarCategory> findByCategoryId(Long categoryId) {
 		return carCategoryJpaRepository.findByCategoryId(categoryId);
+	}
+
+	@Override
+	public void deleteByCar(Car car) {
+		carCategoryJpaRepository.deleteByCar(car);
 	}
 }

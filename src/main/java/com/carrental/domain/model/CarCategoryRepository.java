@@ -7,4 +7,5 @@ public interface CarCategoryRepository {
 
 	List<CarCategory> findByCategoryId(Long categoryId);
 
+	void deleteByCar(Car car);
 }

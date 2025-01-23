@@ -5,10 +5,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.carrental.domain.model.Car;
 import com.carrental.domain.model.CarCategory;
 import com.carrental.domain.model.CarCategoryDetails;
 import com.carrental.domain.model.CarCategoryRepository;
+import com.carrental.domain.model.Category;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -35,6 +38,19 @@ public class CarCategoryService {
 				return new CarCategoryDetails(car, categories);
 			})
 			.toList();
+	}
+
+	@Transactional
+	public void updateCarCategories(Car car, List<Category> categories) {
+		// 기존 카테고리 제거
+		carCategoryRepository.deleteByCar(car);
+
+		// 새로운 카테고리 추가
+		List<CarCategory> newCarCategories = categories.stream()
+			.map(category -> new CarCategory(car, category))
+			.toList();
+
+		carCategoryRepository.saveAll(newCarCategories);
 	}
 }
 
