@@ -1,4 +1,4 @@
-package com.carrental.presentation.request;
+package com.carrental.presentation.api.request;
 
 import java.util.List;
 

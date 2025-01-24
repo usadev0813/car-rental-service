@@ -1,4 +1,4 @@
-package com.carrental.presentation;
+package com.carrental.presentation.api;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ import com.carrental.domain.CategoryService;
 import com.carrental.domain.model.Car;
 import com.carrental.domain.model.CarCreate;
 import com.carrental.domain.model.RentalStatus;
-import com.carrental.presentation.request.CreateCarRequest;
-import com.carrental.presentation.response.CarResponse;
+import com.carrental.presentation.api.request.CreateCarRequest;
+import com.carrental.presentation.api.response.CarResponse;
 
 import lombok.RequiredArgsConstructor;
 

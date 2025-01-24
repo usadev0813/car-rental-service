@@ -1,4 +1,4 @@
-package com.carrental.presentation;
+package com.carrental.presentation.api;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.carrental.domain.CarCategoryService;
 import com.carrental.domain.CarService;
 import com.carrental.domain.CategoryService;
-import com.carrental.presentation.request.UpdateCarCategoriesRequest;
-import com.carrental.presentation.response.CarWithCategoryResponse;
+import com.carrental.presentation.api.request.UpdateCarCategoriesRequest;
+import com.carrental.presentation.api.response.CarWithCategoryResponse;
 
 import lombok.RequiredArgsConstructor;
 

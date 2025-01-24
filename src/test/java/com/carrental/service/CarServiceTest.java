@@ -19,7 +19,7 @@ import com.carrental.domain.model.CarCreate;
 import com.carrental.domain.model.CarRepository;
 import com.carrental.domain.model.Category;
 import com.carrental.domain.model.RentalStatus;
-import com.carrental.presentation.response.CarResponse;
+import com.carrental.presentation.api.response.CarResponse;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceTest {

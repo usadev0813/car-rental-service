@@ -1,4 +1,4 @@
-package com.carrental.presentation.response;
+package com.carrental.presentation.api.response;
 
 import com.carrental.domain.model.Car;
 
