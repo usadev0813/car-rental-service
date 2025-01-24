@@ -1,4 +1,4 @@
-package com.carrental.persistence;
+package com.carrental.persistence.persistence;
 
 import java.util.List;
 import java.util.Optional;

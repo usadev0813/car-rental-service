@@ -1,6 +1,4 @@
-package com.carrental.persistence;
-
-import java.util.Optional;
+package com.carrental.persistence.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
